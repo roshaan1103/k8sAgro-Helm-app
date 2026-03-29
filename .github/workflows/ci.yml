@@ -25,7 +25,7 @@ jobs:
       # Build Docker image
       - name: Build Docker image
         run: |
-          docker build -t ghcr.io/roshaan1103/k8sagro-helm-app:${GITHUB_SHA} .
+          docker build -t ghcr.io/roshaan1103/k8sagro-helm-app:${GITHUB_SHA} app/
 
       # Push Docker image
       - name: Push Docker image
