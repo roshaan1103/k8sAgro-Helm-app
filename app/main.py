@@ -10,7 +10,7 @@ REQUEST_COUNTER = Counter("requests_total", "Total HTTP requests", ["endpoint"])
 @app.get("/")
 def read_root():
     REQUEST_COUNTER.labels(endpoint="/").inc()
-    return {"message": "Hello from AIops App!"}
+    return {"message": "Hello from AIops App!, Checking the status"}
 
 # Prometheus metrics endpoint
 @app.get("/metrics")
