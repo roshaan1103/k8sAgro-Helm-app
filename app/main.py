@@ -4,4 +4,4 @@ app = FastAPI()
 
 @app.get("/")
 def read_root():
-    return {"message": "Version 2 deployed"}
+    return {"message": "Version 3, auto sha checking"}
