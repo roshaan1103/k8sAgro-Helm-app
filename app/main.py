@@ -4,4 +4,4 @@ app = FastAPI()
 
 @app.get("/")
 def read_root():
-    return {"message": "CI/CD with ArgoCD is working"}
+    return {"message": "Version 2 deployed"}
