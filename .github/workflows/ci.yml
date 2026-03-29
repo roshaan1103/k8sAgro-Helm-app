@@ -22,7 +22,7 @@ jobs:
 
       - name: Build Image
         run: |
-          docker build -t ghcr.io/roshaan1103/k8sagro-helm-app:latest app/.
+          docker build -t ghcr.io/roshaan1103/k8sagro-helm-app:latest app/
 
       - name: Push Image
         run: |
