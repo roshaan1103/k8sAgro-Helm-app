@@ -22,15 +22,20 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Set lowercase image name
+        run: |
+          IMAGE_NAME=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
+          echo "IMAGE_NAME=$IMAGE_NAME" >> $GITHUB_ENV
+      
       # Build Docker image
       - name: Build Docker image
         run: |
-          docker build -t ghcr.io/${{ github.repository }}:${{ github.sha }} app/
+          docker build -t ghcr.io/$IMAGE_NAME:${{ github.sha }} app/
 
       # Push Docker image
       - name: Push Docker image
         run: |
-          docker push ghcr.io/${{ github.repository }}:${{ github.sha }}
+          docker push ghcr.io/$IMAGE_NAME:${{ github.sha }}
 
       # Checkout GitOps repo
       - name: Checkout GitOps repo
@@ -43,7 +48,7 @@ jobs:
       # Update deployment.yaml with new image tag
       - name: Update deployment.yaml
         run: |
-          sed -i "s|image: .*|image: ghcr.io/${{ github.repository }}:${{ github.sha }}|g" gitops/apps/aiops-app/deployment.yaml
+          sed -i "s|image: .*|image: ghcr.io/$IMAGE_NAME:${{ github.sha }}|g" gitops/apps/aiops-app/deployment.yaml
 
       # Commit and push changes to GitOps repo
       - name: Commit and push GitOps update
