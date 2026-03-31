@@ -57,5 +57,5 @@ jobs:
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
           git add apps/aiops-app/deployment.yaml
-          git diff --cached --quiet || git commit -m "Update image to ${{ github.sha }}""
+          git diff --cached --quiet || git commit -m "Update image to ${{ github.sha }}"
           git push
